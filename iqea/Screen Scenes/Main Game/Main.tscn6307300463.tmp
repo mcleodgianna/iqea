@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu5h4r42dt48r"]
+
+[ext_resource type="Script" uid="uid://6q82dm14fswt" path="res://Screen Scenes/Main Game/scene.gd" id="1_ac845"]
+[ext_resource type="PackedScene" uid="uid://bo1cpe7ekrm1q" path="res://Grid/Grid.tscn" id="2_o7qu1"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ac845")
+
+[node name="Grid" parent="." instance=ExtResource("2_o7qu1")]
+offset_left = 191.0
+offset_top = 45.0
+offset_right = 447.0
+offset_bottom = 301.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 16
+width = 16
+height = 16
+cellWidth = 16
+cellHeight = 16
+
+[connection signal="gui_input" from="Grid" to="." method="_on_grid_gui_input"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4d50vx3qodcv"]
+
+[ext_resource type="Script" uid="uid://cl1peak1gy4ne" path="res://button.gd" id="1_vlydu"]
+[ext_resource type="PackedScene" uid="uid://c5y26y845kq8q" path="res://Objects/Sample Object/object.tscn" id="2_xwruv"]
+
+[node name="Button" type="Button"]
+offset_right = 80.0
+offset_bottom = 31.0
+text = "Purchase"
+script = ExtResource("1_vlydu")
+furniture_scene = ExtResource("2_xwruv")

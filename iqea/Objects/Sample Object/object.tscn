@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5y26y845kq8q"]
+
+[ext_resource type="Texture2D" uid="uid://cojblwfi5swf" path="res://Objects/Sample Object/couch4.png" id="1_ed8ka"]
+[ext_resource type="Script" uid="uid://wkjwjg6p64bp" path="res://Objects/Sample Object/object.gd" id="1_l2ofb"]
+
+[node name="Object" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.392157)
+texture = ExtResource("1_ed8ka")
+script = ExtResource("1_l2ofb")
+rect = Rect2(0, 0, 32, 16)

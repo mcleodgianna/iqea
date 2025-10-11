@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://5pq4aer385v7"]
+
+[ext_resource type="Script" uid="uid://g7d6bv4vn1oc" path="res://Screen Scenes/Main Game/catalog.gd" id="1_kb2av"]
+
+[node name="catalog" type="Area2D"]
+script = ExtResource("1_kb2av")
