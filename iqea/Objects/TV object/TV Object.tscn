@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://chsg5faiup77f"]
+
+[ext_resource type="Texture2D" uid="uid://bhbb0nglfnmoo" path="res://Objects/TV object/CRTTV.png" id="1_6ovc7"]
+[ext_resource type="Script" uid="uid://wkjwjg6p64bp" path="res://Objects/Sample Object/object.gd" id="2_1jnmo"]
+
+[node name="Object" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.392157)
+texture = ExtResource("1_6ovc7")
+script = ExtResource("2_1jnmo")
+rect = Rect2(0, 0, 16, 16)
+price = 199
+health = 5
