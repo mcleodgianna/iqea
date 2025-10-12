@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cu5h4r42dt48r"]
+[gd_scene load_steps=10 format=3 uid="uid://cu5h4r42dt48r"]
 
 [ext_resource type="Script" uid="uid://6q82dm14fswt" path="res://Screen Scenes/Main Game/scene.gd" id="1_ac845"]
 [ext_resource type="PackedScene" uid="uid://bo1cpe7ekrm1q" path="res://Grid/Grid.tscn" id="2_o7qu1"]
 [ext_resource type="Texture2D" uid="uid://cmxma2ulqbn2r" path="res://Assets/Backgrounds/daygrid.png" id="3_ac845"]
+[ext_resource type="PackedScene" uid="uid://5pq4aer385v7" path="res://Screen Scenes/Main Game/catalog.tscn" id="4_o7qu1"]
+[ext_resource type="PackedScene" uid="uid://c5y26y845kq8q" path="res://Objects/Sample Object/object.tscn" id="5_5uvgq"]
+[ext_resource type="PackedScene" uid="uid://chsg5faiup77f" path="res://Objects/TV object/TV Object.tscn" id="6_og6rb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o7qu1"]
 texture = ExtResource("3_ac845")
@@ -67,6 +70,12 @@ height = 16
 cellWidth = 16
 cellHeight = 16
 
+[node name="catalog" parent="." instance=ExtResource("4_o7qu1")]
+position = Vector2(53, 174)
+items = Array[PackedScene]([ExtResource("5_5uvgq"), ExtResource("6_og6rb")])
+
 [connection signal="gui_input" from="Grid" to="." method="_on_grid_gui_input"]
 [connection signal="mouse_entered" from="Grid" to="." method="_on_grid_mouse_entered"]
 [connection signal="mouse_exited" from="Grid" to="." method="_on_grid_mouse_exited"]
+[connection signal="mouse_entered" from="catalog" to="." method="_on_catalog_mouse_entered"]
+[connection signal="mouse_exited" from="catalog" to="." method="_on_catalog_mouse_exited"]

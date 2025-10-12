@@ -1,8 +1,7 @@
 extends Node2D
 
 @onready var grid: GridContainer = $Grid
-
-const OBJECT = preload("res://Objects/Sample Object/object.tscn")
+@onready var catalog = $catalog
 
 var gridSize: Vector2
 var selecting = false
@@ -11,6 +10,7 @@ var targetCell
 var objectCells
 var isValid = false
 var mouseInside = false
+var mouse_over_catalog = false
 
 func _ready() -> void:
 	gridSize = Vector2(grid.cellWidth,grid.cellHeight)
@@ -19,12 +19,21 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	# showcase only
 	var newPlacement
-	if Input.is_action_just_pressed("leftClick") and not object:
+	if Input.is_action_just_pressed("leftClick") and not object and mouse_over_catalog:
 		selecting = true
-		newPlacement = OBJECT.instantiate()
+		newPlacement = catalog.get_current_item().instantiate()
 		add_child(newPlacement)
 		newPlacement.global_position = get_global_mouse_position()
 		object = newPlacement
+	if Input.is_action_just_pressed("rotate") and object != null:
+		object.rotation += PI/2
+		object.flip_rect()
+		object.global_position = targetCell.global_position + object.rect.size/2
+		
+		_reset_highlight()
+		objectCells = _get_object_cells()
+		isValid = _check_and_hightlight_cells(objectCells)
+		
 	elif Input.is_action_just_released("leftClick"):
 		selecting = false
 		if isValid:
@@ -73,7 +82,7 @@ func _get_object_cells() -> Array:
 
 func _check_and_hightlight_cells(_objectCells: Array):
 	isValid = true
-	var objectCellCount = (object.rect.size.x / gridSize.x) * (object.rect.size.y / gridSize.y)
+	var objectCellCount = snapped((object.rect.size.x / gridSize.x) * (object.rect.size.y / gridSize.y),0.0001)
 	
 	if objectCellCount != objectCells.size(): 
 		isValid = false
@@ -105,3 +114,11 @@ func _on_grid_mouse_entered():
 
 func _on_grid_mouse_exited():
 	mouseInside = false
+
+
+func _on_catalog_mouse_exited():
+	mouse_over_catalog = false
+
+
+func _on_catalog_mouse_entered():
+	mouse_over_catalog = true
