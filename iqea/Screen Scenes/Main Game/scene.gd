@@ -153,3 +153,9 @@ func _on_end_day_button_pressed():
 func _on_animation_player_gold_giving():
 	balance_sprite.play("Update")
 	balance_label.text = "Balance: " + str(total_earnings)
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if not anim_name == "Showcase":
+		return
+	ScreenTransition.transition_to_scene("res://Screen Scenes/Shop/shop_area.tscn")

@@ -168,6 +168,7 @@ material = SubResource("ShaderMaterial_63pyu")
 custom_minimum_size = Vector2(640, 360)
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(320, 462)

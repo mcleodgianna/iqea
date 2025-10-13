@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d08xbqmqnq6x7"]
+
+[node name="shop_area" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 212.0
+offset_top = 198.0
+offset_right = 252.0
+offset_bottom = 212.0
+text = "shop"

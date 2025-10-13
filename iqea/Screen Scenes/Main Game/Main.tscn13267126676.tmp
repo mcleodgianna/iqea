@@ -300,7 +300,6 @@ items = Array[PackedScene]([ExtResource("5_5uvgq"), ExtResource("6_5uvgq")])
 [connection signal="mouse_entered" from="Grid" to="." method="_on_grid_mouse_entered"]
 [connection signal="mouse_exited" from="Grid" to="." method="_on_grid_mouse_exited"]
 [connection signal="pressed" from="EndDayButton" to="." method="_on_end_day_button_pressed"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="gold_giving" from="AnimationPlayer" to="." method="_on_animation_player_gold_giving"]
 [connection signal="mouse_entered" from="catalog" to="." method="_on_catalog_mouse_entered"]
 [connection signal="mouse_exited" from="catalog" to="." method="_on_catalog_mouse_exited"]
