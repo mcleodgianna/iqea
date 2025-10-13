@@ -2,7 +2,12 @@ extends Node2D
 
 @onready var grid: GridContainer = $Grid
 @onready var catalog = $catalog
+@onready var balance_label = $BalanceLabel
+@onready var furniture = $Furniture
+@onready var balance_sprite = $BalanceSprite
+@onready var animation_player = $AnimationPlayer
 
+var total_earnings = 0
 var gridSize: Vector2
 var selecting = false
 var object
@@ -22,7 +27,7 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("leftClick") and not object and mouse_over_catalog:
 		selecting = true
 		newPlacement = catalog.get_current_item().instantiate()
-		add_child(newPlacement)
+		furniture.add_child(newPlacement)
 		newPlacement.global_position = get_global_mouse_position()
 		object = newPlacement
 	if Input.is_action_just_pressed("rotate") and object != null:
@@ -37,6 +42,9 @@ func _input(_event: InputEvent) -> void:
 	elif Input.is_action_just_released("leftClick"):
 		selecting = false
 		if isValid:
+			object.set_placed(true)
+			object.deleted.connect(_on_deleted_object)
+			total_earnings += object.get_price()
 			_place_placement(objectCells)
 		else:
 			if object != null:
@@ -70,6 +78,15 @@ func _get_target_cell(targetPosition):
 func _reset_highlight():
 	for child:Control in grid.get_children():
 		child.change_color(Color(0,0,0,0))
+
+func _get_other_object_cells(other_object) -> Array:
+	var cells = []
+
+	for child:Control in grid.get_children():
+		if child.get_global_rect().intersects(other_object.get_global_rect()):
+			cells.append(child)
+			
+	return cells
 
 func _get_object_cells() -> Array:
 	var cells = []
@@ -107,6 +124,11 @@ func _place_placement(_objectCells):
 	
 	_reset_highlight()
 
+func _on_deleted_object(deleted_object):
+	total_earnings -= deleted_object.price
+	for cell in _get_other_object_cells(deleted_object):
+		cell.full = false
+	
 
 func _on_grid_mouse_entered():
 	mouseInside = true
@@ -122,3 +144,12 @@ func _on_catalog_mouse_exited():
 
 func _on_catalog_mouse_entered():
 	mouse_over_catalog = true
+
+
+func _on_end_day_button_pressed():
+	animation_player.play("Showcase")
+
+
+func _on_animation_player_gold_giving():
+	balance_sprite.play("Update")
+	balance_label.text = "Balance: " + str(total_earnings)

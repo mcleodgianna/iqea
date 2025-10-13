@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://byh4kiccvx7ju"]
+
+[ext_resource type="Script" uid="uid://bl183idn66831" path="res://UI Elements/object_information.gd" id="1_w7wt7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w7wt7"]
+
+[node name="Object Information" type="Label"]
+offset_right = 120.0
+offset_bottom = 97.0
+text = "Price: 0
+Durability: 0
+Description"
+label_settings = SubResource("LabelSettings_w7wt7")
+autowrap_mode = 2
+script = ExtResource("1_w7wt7")

@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://kgyuiah77d0s"]
+
+[ext_resource type="Script" uid="uid://cnmyf2pv64o46" path="res://Objects/Sample Enemy/basic_enemy.gd" id="1_h7fak"]
+[ext_resource type="PackedScene" uid="uid://i83jb143drj3" path="res://Components/health_component.tscn" id="1_imtsy"]
+[ext_resource type="PackedScene" uid="uid://chwk7qy7nq2y6" path="res://Components/velocity_component.tscn" id="2_h7fak"]
+[ext_resource type="PackedScene" uid="uid://vadsr47pcv56" path="res://Components/hurtbox_component.tscn" id="3_00wsi"]
+[ext_resource type="Texture2D" uid="uid://cojblwfi5swf" path="res://Objects/Sample Object/couch4.png" id="4_hdnnk"]
+[ext_resource type="PackedScene" uid="uid://n3whmj44cl4g" path="res://UI Elements/floating_text.tscn" id="5_00wsi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h7fak"]
+height = 36.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wgg7"]
+radius = 8.0
+height = 34.0
+
+[node name="BasicEnemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_h7fak")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_imtsy")]
+max_health = 5.0
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_h7fak")]
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_00wsi")]
+health_component = NodePath("../HealthComponent")
+floating_text_scene = ExtResource("5_00wsi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_h7fak")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0wgg7")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("4_hdnnk")
