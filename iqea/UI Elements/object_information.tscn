@@ -5,6 +5,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_w7wt7"]
 
 [node name="Object Information" type="Label"]
+modulate = Color(0, 0, 0, 1)
 offset_right = 120.0
 offset_bottom = 97.0
 text = "Price: 0
