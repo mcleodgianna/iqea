@@ -2,10 +2,12 @@ extends Node2D
 
 @onready var grid: GridContainer = $Grid
 @onready var catalog = $catalog
-@onready var balance_label = $BalanceLabel
+@onready var balance_label = $BalanceLabelGroup/BalanceLabel
 @onready var furniture = $Furniture
-@onready var balance_sprite = $BalanceSprite
-@onready var animation_player = $AnimationPlayer
+@onready var balance_sprite = $BalanceLabelGroup/BalanceSprite
+@onready var showcase_animation_player = $ShowcaseAnimationPlayer
+@onready var balance_label_group = $BalanceLabelGroup
+@onready var color_rect = $BalanceLabelGroup/ColorRect
 
 var total_earnings = 0
 var gridSize: Vector2
@@ -19,6 +21,7 @@ var mouse_over_catalog = false
 
 func _ready() -> void:
 	gridSize = Vector2(grid.cellWidth,grid.cellHeight)
+	showcase_animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	
 	
 func _input(_event: InputEvent) -> void:
@@ -147,15 +150,26 @@ func _on_catalog_mouse_entered():
 
 
 func _on_end_day_button_pressed():
-	animation_player.play("Showcase")
-
-
-func _on_animation_player_gold_giving():
-	balance_sprite.play("Update")
-	balance_label.text = "Balance: " + str(total_earnings)
-
+	var tween = create_tween()
+	
+	tween.set_parallel()
+	
+	tween.tween_property(balance_label_group, "global_position",Vector2(balance_label_group.global_position.x,balance_label_group.global_position.y+150), .5)\
+	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(balance_label_group, "scale", Vector2(3,3), .5)\
+	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	tween.chain()
+	tween.tween_property(color_rect, "color", Color(0,0,0,0.7), .5)\
+	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	
+	showcase_animation_player.play("Showcase")
 
 func _on_animation_player_animation_finished(anim_name):
 	if not anim_name == "Showcase":
 		return
 	ScreenTransition.transition_to_scene("res://Screen Scenes/Shop/shop_area.tscn")
+
+
+func _on_showcase_animation_player_gold_giving():
+	balance_sprite.play("Update")
+	balance_label.text = "Balance: " + str(total_earnings)

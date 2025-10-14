@@ -1,93 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2s6o1y41hdsr"]
+[gd_scene load_steps=9 format=3 uid="uid://b2s6o1y41hdsr"]
 
 [ext_resource type="Shader" uid="uid://csug4pylxuvg5" path="res://vignette.gdshader" id="1_4pwj8"]
 [ext_resource type="Script" uid="uid://csw17bw2r1380" path="res://UI Elements/showcaser.gd" id="1_v285s"]
 [ext_resource type="Texture2D" uid="uid://i0w1xsdwygxr" path="res://Assets/temp/crowd.jpg" id="2_4bg0q"]
-
-[sub_resource type="Animation" id="Animation_4bg0q"]
-resource_name = "Showcase"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/ColorRect:material:shader_parameter/vignette_opacity")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 9.666667, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 1.0, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer/ColorRect:mouse_filter")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 10),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 2]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer/Sprite2D:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer/Sprite2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1, 3.0333333, 7, 8.033334),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(320, 462), Vector2(320, 310), Vector2(320, 310), Vector2(320, 470)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AnimationPlayer/CPUParticles2D:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(5.0333333, 8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AnimationPlayer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(5.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"emit_gold_giving"
-}]
-}
+[ext_resource type="Texture2D" uid="uid://daqw425hcvuji" path="res://Assets/UI Elements/dollarbill.png" id="4_63pyu"]
 
 [sub_resource type="Animation" id="Animation_v285s"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/ColorRect:material:shader_parameter/vignette_opacity")
+tracks/0/path = NodePath("ShowcaseAnimationPlayer/ColorRect:material:shader_parameter/vignette_opacity")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -99,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer/ColorRect:mouse_filter")
+tracks/1/path = NodePath("ShowcaseAnimationPlayer/ColorRect:mouse_filter")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -111,7 +34,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer/Sprite2D:visible")
+tracks/2/path = NodePath("ShowcaseAnimationPlayer/Sprite2D:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -123,7 +46,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer/Sprite2D:position")
+tracks/3/path = NodePath("ShowcaseAnimationPlayer/Sprite2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -135,7 +58,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AnimationPlayer/CPUParticles2D:emitting")
+tracks/4/path = NodePath("ShowcaseAnimationPlayer/CPUParticles2D:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -143,6 +66,84 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4bg0q"]
+resource_name = "Showcase"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShowcaseAnimationPlayer/ColorRect:material:shader_parameter/vignette_opacity")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 9.666667, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShowcaseAnimationPlayer/ColorRect:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShowcaseAnimationPlayer/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShowcaseAnimationPlayer/Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 3.0333333, 7, 8.033334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(320, 462), Vector2(320, 310), Vector2(320, 310), Vector2(320, 470)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShowcaseAnimationPlayer/CPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(5.0333333, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ShowcaseAnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(5.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_gold_giving"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v285s"]
@@ -157,7 +158,7 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer"]
+[node name="ShowcaseAnimationPlayer" type="AnimationPlayer"]
 libraries = {
 &"": SubResource("AnimationLibrary_v285s")
 }
@@ -171,6 +172,7 @@ offset_bottom = 40.0
 mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(320, 462)
 scale = Vector2(1, 0.44)
 texture = ExtResource("2_4bg0q")
@@ -179,14 +181,15 @@ texture = ExtResource("2_4bg0q")
 position = Vector2(314, 360)
 emitting = false
 amount = 50
+texture = ExtResource("4_63pyu")
 direction = Vector2(1, -7.065)
 spread = 53.03
 initial_velocity_min = 498.0
 initial_velocity_max = 701.82
 angle_min = -125.1
 angle_max = 146.8
-scale_amount_min = 5.6
-scale_amount_max = 25.85
+scale_amount_min = 2.0
+scale_amount_max = 4.0
 color = Color(1, 0.8509804, 0, 1)
 hue_variation_min = -0.47
 hue_variation_max = 0.4

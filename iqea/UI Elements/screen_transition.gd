@@ -6,7 +6,7 @@ func transition():
 	$AnimationPlayer.play("default")
 	print("play default")
 	await transitioned_halfway
-	$AnimationPlayer.play_backwards("default_backwards")
+	$AnimationPlayer.play("default_backwards")
 	print("play default_backwards")
 	
 

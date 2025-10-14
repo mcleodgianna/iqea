@@ -82,16 +82,6 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_o7qu1")
 sources/1 = SubResource("TileSetAtlasSource_ac845")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dqd8m"]
-texture = ExtResource("11_jos7s")
-region_rect = Rect2(0, 0, 64, 32)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6e37q"]
-texture = ExtResource("11_jos7s")
-region_rect = Rect2(64, 0, 64, 32)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jos7s"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_o43j0"]
 atlas = ExtResource("7_vcuvk")
 region = Rect2(0, 0, 64, 16)
@@ -237,6 +227,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dqd8m"]
+texture = ExtResource("11_jos7s")
+region_rect = Rect2(0, 0, 64, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6e37q"]
+texture = ExtResource("11_jos7s")
+region_rect = Rect2(64, 0, 64, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jos7s"]
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ac845")
 
@@ -266,20 +266,8 @@ height = 16
 cellWidth = 16
 cellHeight = 16
 
-[node name="EndDayButton" type="Button" parent="."]
-offset_left = 284.0
-offset_top = 321.0
-offset_right = 355.0
-offset_bottom = 352.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_dqd8m")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6e37q")
-theme_override_styles/hover = SubResource("StyleBoxTexture_dqd8m")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_jos7s")
-
-[node name="Furniture" type="Node2D" parent="."]
-
 [node name="BalanceLabelGroup" type="Node2D" parent="."]
-position = Vector2(300, 15)
+position = Vector2(348, 89)
 
 [node name="ColorRect" type="ColorRect" parent="BalanceLabelGroup"]
 offset_left = -339.0
@@ -302,20 +290,32 @@ position = Vector2(-13, -1)
 sprite_frames = SubResource("SpriteFrames_xofx3")
 autoplay = "default"
 
+[node name="EndDayButton" type="Button" parent="."]
+offset_left = 284.0
+offset_top = 321.0
+offset_right = 355.0
+offset_bottom = 352.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_dqd8m")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6e37q")
+theme_override_styles/hover = SubResource("StyleBoxTexture_dqd8m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jos7s")
+
+[node name="Furniture" type="Node2D" parent="."]
+
 [node name="Foreground Layer" type="Node2D" parent="." groups=["foreground_layer"]]
 
 [node name="ShowcaseAnimationPlayer" parent="." instance=ExtResource("12_o43j0")]
 
-[node name="catalog" parent="." instance=ExtResource("4_o7qu1")]
-position = Vector2(49, 177)
-items = Array[PackedScene]([ExtResource("5_5uvgq"), ExtResource("6_5uvgq")])
-
 [node name="Player" parent="." instance=ExtResource("10_jos7s")]
-position = Vector2(336, 148)
+position = Vector2(291, 176)
+
+[node name="catalog" parent="Player" instance=ExtResource("4_o7qu1")]
+position = Vector2(-242, 1)
+items = Array[PackedScene]([ExtResource("5_5uvgq"), ExtResource("6_5uvgq")])
 
 [connection signal="mouse_entered" from="Grid" to="." method="_on_grid_mouse_entered"]
 [connection signal="mouse_exited" from="Grid" to="." method="_on_grid_mouse_exited"]
 [connection signal="pressed" from="EndDayButton" to="." method="_on_end_day_button_pressed"]
 [connection signal="gold_giving" from="ShowcaseAnimationPlayer" to="." method="_on_showcase_animation_player_gold_giving"]
-[connection signal="mouse_entered" from="catalog" to="." method="_on_catalog_mouse_entered"]
-[connection signal="mouse_exited" from="catalog" to="." method="_on_catalog_mouse_exited"]
+[connection signal="mouse_entered" from="Player/catalog" to="." method="_on_catalog_mouse_entered"]
+[connection signal="mouse_exited" from="Player/catalog" to="." method="_on_catalog_mouse_exited"]
