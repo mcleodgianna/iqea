@@ -8,7 +8,18 @@ var upgrade_dict = {
 	"max_health": 3,
 	"attack_damage": 2
 }
+var default_upgrade_dict = {
+	"max_health": 3,
+	"attack_damage": 2
+}
 var enemy_locations = []
+
+
+func reset_progress():
+	upgrade_dict = default_upgrade_dict
+	round = 0
+	balance = 0.0
+	enemy_locations = []
 
 func set_round(to_set:int):
 	round = to_set
@@ -26,10 +37,10 @@ func get_upgrade_level(id:String):
 func get_upgrade_dict():
 	return upgrade_dict
 
-func get_upgraded_player():
-	var player = PLAYER.instantiate()
-	player.set_stats(upgrade_dict["max_health"], upgrade_dict["attack_damage"])
-	return player
+func upgrade_player(player_to_upgrade):
+	player_to_upgrade.set_stats(upgrade_dict["max_health"], upgrade_dict["attack_damage"])
+	player_to_upgrade.damage_taken = floor(round+10.0/10)
+	return player_to_upgrade
 
 func set_enemy_locations(to_set: Array[Vector2]):
 	enemy_locations = to_set

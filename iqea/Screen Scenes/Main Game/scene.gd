@@ -8,6 +8,7 @@ extends Node2D
 @onready var showcase_animation_player = $ShowcaseAnimationPlayer
 @onready var balance_label_group = $BalanceLabelGroup
 @onready var color_rect = $BalanceLabelGroup/ColorRect
+@onready var day_counter = $"Day Counter"
 
 var total_earnings = 0
 var gridSize: Vector2
@@ -20,6 +21,8 @@ var mouseInside = false
 var mouse_over_catalog = false
 
 func _ready() -> void:
+	day_counter.text = "Day: " + str(UpgradeManager.get_round())
+	balance_label.text = "Balance: " + str(UpgradeManager.get_balance())
 	gridSize = Vector2(grid.cellWidth,grid.cellHeight)
 	showcase_animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	
@@ -163,6 +166,7 @@ func _on_end_day_button_pressed():
 	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	
 	showcase_animation_player.play("Showcase")
+	UpgradeManager.modify_balance(1,total_earnings)
 	UpgradeManager.set_enemy_locations(get_furniture_pos_list())
 
 func get_furniture_pos_list():
@@ -181,4 +185,4 @@ func _on_animation_player_animation_finished(anim_name):
 
 func _on_showcase_animation_player_gold_giving():
 	balance_sprite.play("Update")
-	balance_label.text = "Balance: " + str(total_earnings)
+	balance_label.text = "Balance: " + str(UpgradeManager.get_balance())

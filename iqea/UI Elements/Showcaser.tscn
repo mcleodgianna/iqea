@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://csug4pylxuvg5" path="res://vignette.gdshader" id="1_4pwj8"]
 [ext_resource type="Script" uid="uid://csw17bw2r1380" path="res://UI Elements/showcaser.gd" id="1_v285s"]
-[ext_resource type="Texture2D" uid="uid://i0w1xsdwygxr" path="res://Assets/temp/crowd.jpg" id="2_4bg0q"]
+[ext_resource type="Texture2D" uid="uid://jaf71bqs3sl2" path="res://Assets/Objects/critic.png" id="3_63pyu"]
 [ext_resource type="Texture2D" uid="uid://daqw425hcvuji" path="res://Assets/UI Elements/dollarbill.png" id="4_63pyu"]
 
 [sub_resource type="Animation" id="Animation_v285s"]
@@ -53,7 +53,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(320, 462)]
+"values": [Vector2(320, 550)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -117,7 +117,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(1, 3.0333333, 7, 8.033334),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(320, 462), Vector2(320, 310), Vector2(320, 310), Vector2(320, 470)]
+"values": [Vector2(400, 550), Vector2(400, 310), Vector2(400, 310), Vector2(320, 550)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -174,8 +174,8 @@ mouse_filter = 2
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(320, 462)
-scale = Vector2(1, 0.44)
-texture = ExtResource("2_4bg0q")
+scale = Vector2(5.645, 5.645)
+texture = ExtResource("3_63pyu")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(314, 360)
