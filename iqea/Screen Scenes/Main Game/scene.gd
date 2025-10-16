@@ -163,6 +163,15 @@ func _on_end_day_button_pressed():
 	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	
 	showcase_animation_player.play("Showcase")
+	UpgradeManager.set_enemy_locations(get_furniture_pos_list())
+
+func get_furniture_pos_list():
+	var pos_list: Array[Vector2]
+	pos_list = []
+	for child:Node2D in furniture.get_children():
+		pos_list.append(child.global_position)
+	return pos_list
+
 
 func _on_animation_player_animation_finished(anim_name):
 	if not anim_name == "Showcase":

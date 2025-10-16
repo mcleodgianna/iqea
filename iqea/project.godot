@@ -23,6 +23,7 @@ config/main_scene=""
 [autoload]
 
 ScreenTransition="*res://UI Elements/screen_transition.tscn"
+UpgradeManager="*res://Manager/upgrade_manager.tscn"
 
 [display]
 

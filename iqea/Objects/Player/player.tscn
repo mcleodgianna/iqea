@@ -112,17 +112,17 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kmg4v")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle_back",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("6_bpp7x")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle_front",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,

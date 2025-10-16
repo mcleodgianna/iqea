@@ -6,7 +6,9 @@ extends CharacterBody2D
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
 @onready var animated_sprite_2d = $Visuals/AnimatedSprite2D
+@onready var basic_attack_manager = $BasicAttackManager
 
+var damage_taken = 1
 var number_colliding_bodies = 0
 var base_speed = 0
 
@@ -18,11 +20,11 @@ func _ready():
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
 	health_component.health_changed.connect(on_health_changed)
 	
+ 
+func set_stats(health: int, damage: int):
+	health_component.max_health = health
+	basic_attack_manager.hit_damage = damage
 	
-
-
-#func set_stats():
-
 
 func _process(_delta):
 	var movement_vector = get_movement_vector()
@@ -30,23 +32,19 @@ func _process(_delta):
 	velocity_component.accelerate_in_direction(direction)
 	velocity_component.move(self)
 	
-	var move_signx = sign(movement_vector.x)
-	var move_signy = sign(movement_vector.y) 
-	if move_signx != 0:
-		visuals.scale = Vector2(move_signx,1)
-	if abs(direction.x) < 0.5:
-		print(movement_vector)
-		if direction.y > .1:
+	var move_sign = sign(movement_vector)
+	if move_sign.x != 0:
+		visuals.scale = Vector2(move_sign.x,1)
+	if abs(movement_vector.x) < 0.5:
+		if movement_vector.y > 0.1:
 			animated_sprite_2d.play("walk_down")
-		elif direction.y < -.1:
+		elif movement_vector.y < -0.1:
 			animated_sprite_2d.play("walk_up")
-		else:
-			if move_signy >0:
-				animated_sprite_2d.play("idle_front")
-			else:
-				animated_sprite_2d.play("idle_back")
+			
 	else:
-		animated_sprite_2d.play("")
+		animated_sprite_2d.play("walk_side")
+	if movement_vector == Vector2.ZERO:
+		animated_sprite_2d.stop()
 
 func get_movement_vector():
 	var x_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -56,7 +54,7 @@ func get_movement_vector():
 func check_deal_damage():
 	if number_colliding_bodies == 0 || (!damage_interval_timer.is_stopped()):
 		return
-	health_component.damage(1)
+	health_component.damage(damage_taken)
 	print("ow: " + str(health_component.current_health))
 	damage_interval_timer.start()
 

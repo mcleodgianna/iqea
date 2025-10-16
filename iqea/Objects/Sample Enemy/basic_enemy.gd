@@ -3,10 +3,13 @@ extends CharacterBody2D
 
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
+@onready var health_component = $HealthComponent
 
 func _ready():
 	$HurtboxComponent.hit.connect(on_hit)
 
+func set_max_health(hp:int):
+	health_component.max_health = hp
 
 func _process(_delta):
 	velocity_component.accelerate_to_player()
