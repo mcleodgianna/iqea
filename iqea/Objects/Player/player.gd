@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var damage_interval_timer = $DamageIntervalTimer
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
+@onready var animated_sprite_2d = $Visuals/AnimatedSprite2D
+@onready var footstep_player = $FootstepPlayer
 
 var number_colliding_bodies = 0
 var base_speed = 0
@@ -16,6 +18,11 @@ func _ready():
 	$CollisionArea2D.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
 	health_component.health_changed.connect(on_health_changed)
+	
+	
+
+
+#func set_stats():
 
 
 func _process(_delta):
@@ -24,9 +31,29 @@ func _process(_delta):
 	velocity_component.accelerate_in_direction(direction)
 	velocity_component.move(self)
 	
-	var move_sign = sign(movement_vector.x)
-	if move_sign != 0:
-		visuals.scale = Vector2(move_sign,1)
+	if movement_vector.length() > 0:
+		if not footstep_player.playing:
+			footstep_player.play()
+	else:
+		footstep_player.stop()
+	
+	var move_signx = sign(movement_vector.x)
+	var move_signy = sign(movement_vector.y) 
+	if move_signx != 0:
+		visuals.scale = Vector2(move_signx,1)
+	if abs(direction.x) < 0.5:
+		print(movement_vector)
+		if direction.y > .1:
+			animated_sprite_2d.play("walk_down")
+		elif direction.y < -.1:
+			animated_sprite_2d.play("walk_up")
+		else:
+			if move_signy >0:
+				animated_sprite_2d.play("idle_front")
+			else:
+				animated_sprite_2d.play("idle_back")
+	else:
+		animated_sprite_2d.play("")
 
 func get_movement_vector():
 	var x_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")

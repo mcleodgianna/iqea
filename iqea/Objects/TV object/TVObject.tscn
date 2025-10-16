@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8g7v4cupufp4"]
+[gd_scene load_steps=5 format=3 uid="uid://c8g7v4cupufp4"]
 
 [ext_resource type="Texture2D" uid="uid://bhbb0nglfnmoo" path="res://Objects/TV object/CRTTV.png" id="1_5sabu"]
 [ext_resource type="Script" uid="uid://wkjwjg6p64bp" path="res://Objects/Sample Object/object.gd" id="2_cylrj"]
+[ext_resource type="AudioStream" uid="uid://dk5fsd44uppma" path="res://Assets/Audio/Place_object.wav" id="3_27hcd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed8ka"]
 size = Vector2(32, 16)
@@ -19,5 +20,8 @@ view_scale_factor = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_ed8ka")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_27hcd")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

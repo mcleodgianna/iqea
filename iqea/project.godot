@@ -20,6 +20,10 @@ boot_splash/use_filter=false
 config/icon="res://icon.svg"
 config/main_scene=""
 
+[autoload]
+
+ScreenTransition="*res://UI Elements/screen_transition.tscn"
+
 [display]
 
 window/size/viewport_width=640
