@@ -40,6 +40,7 @@ func set_on_place():
 
 func set_placed(to_set:bool):
 	placed = to_set
+	
 
 func _process(_delta):
 	if delete_button.disabled:
@@ -57,6 +58,7 @@ func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 
 
 func _on_delete_button_pressed():
+	
 	emit_signal("deleted",self)
 	queue_free()
 

@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
 @onready var animated_sprite_2d = $Visuals/AnimatedSprite2D
+@onready var footstep_player = $FootstepPlayer
 
 var number_colliding_bodies = 0
 var base_speed = 0
@@ -29,6 +30,12 @@ func _process(_delta):
 	var direction = movement_vector.normalized()
 	velocity_component.accelerate_in_direction(direction)
 	velocity_component.move(self)
+	
+	if movement_vector.length() > 0:
+		if not footstep_player.playing:
+			footstep_player.play()
+	else:
+		footstep_player.stop()
 	
 	var move_signx = sign(movement_vector.x)
 	var move_signy = sign(movement_vector.y) 
