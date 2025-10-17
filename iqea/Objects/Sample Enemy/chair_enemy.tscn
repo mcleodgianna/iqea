@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://bga2ewinjccs5"]
+
+[ext_resource type="Script" uid="uid://cnmyf2pv64o46" path="res://Objects/Sample Enemy/basic_enemy.gd" id="1_2ydkm"]
+[ext_resource type="PackedScene" uid="uid://i83jb143drj3" path="res://Components/health_component.tscn" id="2_e7x5r"]
+[ext_resource type="PackedScene" uid="uid://chwk7qy7nq2y6" path="res://Components/velocity_component.tscn" id="3_onsf7"]
+[ext_resource type="PackedScene" uid="uid://vadsr47pcv56" path="res://Components/hurtbox_component.tscn" id="4_0y3jy"]
+[ext_resource type="PackedScene" uid="uid://n3whmj44cl4g" path="res://UI Elements/floating_text.tscn" id="5_cjnai"]
+[ext_resource type="Texture2D" uid="uid://d2w048qgo4sl3" path="res://Objects/Sample Enemy/evilchair.png" id="6_2ydkm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h7fak"]
+radius = 7.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wgg7"]
+radius = 7.0
+height = 14.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hdnnk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2ydkm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="ChairEnemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_2ydkm")
+id = 4
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_e7x5r")]
+max_health = 5.0
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_onsf7")]
+max_speed = 60
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_0y3jy")]
+health_component = NodePath("../HealthComponent")
+floating_text_scene = ExtResource("5_cjnai")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_h7fak")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0wgg7")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+sprite_frames = SubResource("SpriteFrames_hdnnk")
+autoplay = "default"

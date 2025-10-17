@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=3 uid="uid://b4nt8fhhecmsh"]
+
+[ext_resource type="Texture2D" uid="uid://bhbb0nglfnmoo" path="res://Objects/TV object/CRTTV.png" id="1_5sabu"]
+[ext_resource type="Script" uid="uid://wkjwjg6p64bp" path="res://Objects/Sample Object/object.gd" id="2_6rrol"]
+[ext_resource type="Texture2D" uid="uid://c1460pva4jhbk" path="res://Assets/temp/trash icon.png" id="3_pi86c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ed8ka"]
+size = Vector2(32, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8okp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk700"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ips1d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w41cc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fvo0s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m378s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_py1fw"]
+
+[node name="Sprite2D" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.392157)
+texture = ExtResource("1_5sabu")
+script = ExtResource("2_6rrol")
+price = 199.99
+health = 5
+desc = "Watch the new season of Peacemaker on this bad boy!"
+view_scale_factor = 3.0
+id = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ed8ka")
+
+[node name="Delete Button" type="Button" parent="."]
+z_index = 1
+offset_left = -8.0
+offset_top = -43.0
+offset_right = 16.0
+offset_bottom = -19.0
+pivot_offset = Vector2(8, 43)
+mouse_filter = 2
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/icon_normal_color = Color(1, 0.28627452, 0.39215687, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x8okp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jk700")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ips1d")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w41cc")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_fvo0s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_m378s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_py1fw")
+icon = ExtResource("3_pi86c")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Delete Button" to="." method="_on_delete_button_mouse_entered"]
+[connection signal="mouse_exited" from="Delete Button" to="." method="_on_delete_button_mouse_exited"]
+[connection signal="pressed" from="Delete Button" to="." method="_on_delete_button_pressed"]

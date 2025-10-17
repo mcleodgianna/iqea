@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=4 uid="uid://cpbrdq73pfjg4"]
+[gd_scene load_steps=7 format=4 uid="uid://cpbrdq73pfjg4"]
 
 [ext_resource type="Script" uid="uid://cxm4xn8llxcse" path="res://Screen Scenes/Main Game/night_main.gd" id="1_4vfdr"]
 [ext_resource type="TileSet" uid="uid://cargxwu0xcn7u" path="res://dayset.tres" id="2_37bi3"]
+[ext_resource type="PackedScene" uid="uid://djn6ixx5o0coc" path="res://UI Elements/death_screen.tscn" id="3_fj65b"]
+[ext_resource type="Script" uid="uid://cgvwaaid0g1pu" path="res://Screen Scenes/Main Game/progress_bar.gd" id="4_qx4na"]
+[ext_resource type="Texture2D" uid="uid://ytfukrd3jor7" path="res://Assets/UI Elements/pixil-frame-0.png" id="5_24str"]
+
+[sub_resource type="Gradient" id="Gradient_fj65b"]
+offsets = PackedFloat32Array(0, 0.10150376, 0.2556391, 0.43984962, 0.62406015, 0.8834587, 1)
+colors = PackedColorArray(1, 0.056910608, 0.056910608, 1, 1, 0.48235294, 0, 1, 1, 1, 0, 1, 0, 0.9843137, 0, 1, 0, 0, 1, 1, 1, 0, 0.38461518, 1, 1, 1, 1, 1)
 
 [node name="NightMain" type="Node2D"]
 script = ExtResource("1_4vfdr")
@@ -19,3 +26,47 @@ tile_set = ExtResource("2_37bi3")
 [node name="Furniture" type="Node2D" parent="."]
 
 [node name="Foreground Layer" type="Node2D" parent="." groups=["foreground_layer"]]
+
+[node name="DeathScreen" parent="." instance=ExtResource("3_fj65b")]
+
+[node name="WinTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Win Particles" type="CPUParticles2D" parent="."]
+position = Vector2(309, -21)
+emitting = false
+amount = 563
+spread = 180.0
+initial_velocity_min = 94.1
+initial_velocity_max = 491.24
+angle_min = -266.0
+angle_max = 9.2
+scale_amount_min = 0.0
+scale_amount_max = 20.11
+color_ramp = SubResource("Gradient_fj65b")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(250, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 197.0
+offset_top = 336.0
+offset_right = 447.0
+offset_bottom = 354.0
+grow_horizontal = 2
+grow_vertical = 0
+step = 1.0
+value = 65.0
+show_percentage = false
+script = ExtResource("4_qx4na")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(194.99998, 343.99997)
+scale = Vector2(1.935, 1.935)
+texture = ExtResource("5_24str")
+
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

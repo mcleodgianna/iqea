@@ -48,6 +48,7 @@ func _input(_event: InputEvent) -> void:
 	elif Input.is_action_just_released("leftClick"):
 		selecting = false
 		if isValid:
+			SoundEffectPlayer.set_track("res://Assets/sfx/Place_object.mp3")
 			object.set_placed(true)
 			object.deleted.connect(_on_deleted_object)
 			total_earnings += object.get_price()
@@ -168,6 +169,8 @@ func _on_end_day_button_pressed():
 	showcase_animation_player.play("Showcase")
 	UpgradeManager.modify_balance(1,total_earnings)
 	UpgradeManager.set_enemy_locations(get_furniture_pos_list())
+	UpgradeManager.set_enemy_types(get_furniture_id_list())
+	UpgradeManager.set_enemy_health(get_furniture_health_list())
 
 func get_furniture_pos_list():
 	var pos_list: Array[Vector2]
@@ -175,6 +178,20 @@ func get_furniture_pos_list():
 	for child:Node2D in furniture.get_children():
 		pos_list.append(child.global_position)
 	return pos_list
+
+func get_furniture_id_list():
+	var id_list: Array[int]
+	id_list = []
+	for child:Node2D in furniture.get_children():
+		id_list.append(child.id)
+	return id_list
+
+func get_furniture_health_list():
+	var health_list: Array[int]
+	health_list = []
+	for child:Node2D in furniture.get_children():
+		health_list.append(child.health)
+	return health_list
 
 
 func _on_animation_player_animation_finished(anim_name):

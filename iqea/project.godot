@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Iqea"
-run/main_scene="uid://cu5h4r42dt48r"
+run/main_scene="uid://cs8f1fhha1iso"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="IqeaGame"
 config/features=PackedStringArray("4.5", "Forward Plus")
@@ -24,6 +24,8 @@ config/main_scene=""
 
 ScreenTransition="*res://UI Elements/screen_transition.tscn"
 UpgradeManager="*res://Manager/upgrade_manager.tscn"
+MusicPlayer="*res://music_player.tscn"
+SoundEffectPlayer="*res://sound_effect_player.gd"
 
 [display]
 

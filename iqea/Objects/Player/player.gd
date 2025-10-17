@@ -7,11 +7,14 @@ extends CharacterBody2D
 @onready var velocity_component = $VelocityComponent
 @onready var animated_sprite_2d = $Visuals/AnimatedSprite2D
 @onready var basic_attack_manager = $BasicAttackManager
+@onready var animation_player = $CanvasLayer/AnimationPlayer
 
 var damage_taken = 1
 var number_colliding_bodies = 0
 var base_speed = 0
 
+signal player_died
+signal player_health_changed
 func _ready():
 	base_speed = velocity_component.max_speed
 	
@@ -19,10 +22,17 @@ func _ready():
 	$CollisionArea2D.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
 	health_component.health_changed.connect(on_health_changed)
-	
+
+func get_max_health():
+	return health_component.max_health
+
+func get_current_health():
+	return health_component.current_health
+
  
 func set_stats(health: int, damage: int):
 	health_component.max_health = health
+	health_component.full_heal()
 	basic_attack_manager.hit_damage = damage
 	
 
@@ -31,7 +41,6 @@ func _process(_delta):
 	var direction = movement_vector.normalized()
 	velocity_component.accelerate_in_direction(direction)
 	velocity_component.move(self)
-	
 	var move_sign = sign(movement_vector)
 	if move_sign.x != 0:
 		visuals.scale = Vector2(move_sign.x,1)
@@ -40,7 +49,6 @@ func _process(_delta):
 			animated_sprite_2d.play("walk_down")
 		elif movement_vector.y < -0.1:
 			animated_sprite_2d.play("walk_up")
-			
 	else:
 		animated_sprite_2d.play("walk_side")
 	if movement_vector == Vector2.ZERO:
@@ -55,7 +63,7 @@ func check_deal_damage():
 	if number_colliding_bodies == 0 || (!damage_interval_timer.is_stopped()):
 		return
 	health_component.damage(damage_taken)
-	print("ow: " + str(health_component.current_health))
+	animation_player.play("hit")
 	damage_interval_timer.start()
 
 
@@ -73,5 +81,10 @@ func on_damage_interval_timer_timeout():
 
 
 func on_health_changed():
-	pass
+	player_health_changed.emit()
 	#$HitRandomStreamPlayer.play_random()
+
+
+func _on_health_component_died():
+	print("i died")
+	player_died.emit()

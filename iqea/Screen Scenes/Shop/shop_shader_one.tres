@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c863bgbnehy6q"]
+
+[ext_resource type="Shader" uid="uid://opb3u3ao2ajx" path="res://Screen Scenes/Main Game/background_scroll.gdshader" id="1_vtspq"]
+
+[resource]
+shader = ExtResource("1_vtspq")

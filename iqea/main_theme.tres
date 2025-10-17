@@ -1,4 +1,32 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cpv3q2la0regs"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cpv3q2la0regs"]
+
+[ext_resource type="Texture2D" uid="uid://b23eubdqm2y6y" path="res://Assets/UI Elements/buttonswithborders.png" id="1_470mv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a2l2q"]
+texture = ExtResource("1_470mv")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+region_rect = Rect2(0, 0, 64, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_470mv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_466ly"]
+texture = ExtResource("1_470mv")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+region_rect = Rect2(0, 0, 64, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_52mx2"]
+texture = ExtResource("1_470mv")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+region_rect = Rect2(64, 3, 64, 29)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsqoc"]
 bg_color = Color(0.9411765, 0.4, 0.49411765, 1)
@@ -12,5 +40,28 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_470mv"]
+bg_color = Color(0.30826294, 0.16223559, 0.116622396, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2l2q"]
+bg_color = Color(0.6, 0, 0.1882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.30980393, 0.16078432, 0.11764706, 1)
+
 [resource]
+Button/styles/disabled = SubResource("StyleBoxTexture_a2l2q")
+Button/styles/focus = SubResource("StyleBoxEmpty_470mv")
+Button/styles/hover = SubResource("StyleBoxTexture_466ly")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_52mx2")
+Button/styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_52mx2")
+Button/styles/normal = SubResource("StyleBoxTexture_466ly")
+Button/styles/pressed = SubResource("StyleBoxTexture_52mx2")
+Button/styles/pressed_mirrored = SubResource("StyleBoxTexture_52mx2")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 4
 Panel/styles/panel = SubResource("StyleBoxFlat_gsqoc")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_470mv")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_a2l2q")

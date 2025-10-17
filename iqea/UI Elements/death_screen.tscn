@@ -1,0 +1,225 @@
+[gd_scene load_steps=9 format=3 uid="uid://djn6ixx5o0coc"]
+
+[ext_resource type="Shader" uid="uid://cgy7vk4811033" path="res://UI Elements/death_screen.gdshader" id="1_aftac"]
+[ext_resource type="Script" uid="uid://ctx7scvp4xc2v" path="res://UI Elements/death_screen.gd" id="1_scrbe"]
+[ext_resource type="Texture2D" uid="uid://c1wbog58j78kb" path="res://Assets/Objects/couch/evilcouch-Sheet.png" id="3_qeqq8"]
+
+[sub_resource type="Animation" id="Animation_uhw3s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/vignette_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/vignette_intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:mouse_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aftac"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/vignette_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.6750000320625]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/vignette_intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:mouse_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control:scale")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_scrbe"]
+_data = {
+&"RESET": SubResource("Animation_uhw3s"),
+&"die": SubResource("Animation_aftac")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_10n0n"]
+shader = ExtResource("1_aftac")
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.0
+shader_parameter/vignette_rgb = Color(0.56078434, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qeqq8"]
+font_size = 32
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="DeathScreen" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_scrbe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_scrbe")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_10n0n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 180.0
+offset_right = 360.0
+offset_bottom = 220.0
+
+[node name="Panel" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -63.0
+offset_top = -85.0
+offset_right = 59.0
+offset_bottom = -57.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+text = "You Died!"
+label_settings = SubResource("LabelSettings_qeqq8")
+
+[node name="RestartButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 14.0
+offset_right = 26.0
+offset_bottom = 43.0
+text = "Restart"
+
+[node name="QuitToTitle" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = -51.0
+offset_top = 53.0
+offset_right = 46.0
+offset_bottom = 82.0
+text = "Quit To Title"
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(-0.9999962, -117)
+scale = Vector2(5.110765, 3.3485937)
+texture = ExtResource("3_qeqq8")
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -86.0
+offset_top = -52.0
+offset_right = -46.0
+offset_bottom = -38.0
+
+[connection signal="pressed" from="Control/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Control/QuitToTitle" to="." method="_on_quit_to_title_pressed"]

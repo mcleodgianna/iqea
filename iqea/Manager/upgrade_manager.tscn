@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtxkaxg4bvi0i"]
+[gd_scene load_steps=6 format=3 uid="uid://dtxkaxg4bvi0i"]
 
 [ext_resource type="Script" uid="uid://mj40uhu68tgg" path="res://Manager/upgrade_manager.gd" id="1_sw1c3"]
+[ext_resource type="PackedScene" uid="uid://kgyuiah77d0s" path="res://Objects/Sample Enemy/basic_enemy.tscn" id="2_0l2n3"]
+[ext_resource type="PackedScene" uid="uid://dfnxd2cc6wxwo" path="res://Objects/Sample Enemy/TV_enemy.tscn" id="3_3n1ee"]
+[ext_resource type="PackedScene" uid="uid://dwq647vd1e1fd" path="res://Objects/Sample Enemy/table_enemy.tscn" id="4_3n1ee"]
+[ext_resource type="PackedScene" uid="uid://bga2ewinjccs5" path="res://Objects/Sample Enemy/chair_enemy.tscn" id="5_dla8i"]
 
 [node name="UpgradeManager" type="Node"]
 script = ExtResource("1_sw1c3")
+enemy_list = Array[PackedScene]([ExtResource("2_0l2n3"), ExtResource("3_3n1ee"), ExtResource("4_3n1ee"), ExtResource("5_dla8i")])

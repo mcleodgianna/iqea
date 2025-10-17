@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf4vcasg414u2"]
+
+[ext_resource type="Script" uid="uid://bf0jrg15yysv8" path="res://intro_scene.gd" id="1_swis1"]
+[ext_resource type="Texture2D" uid="uid://dhat5ncln58nk" path="res://Assets/UI Elements/intro.png" id="2_piu38"]
+[ext_resource type="Texture2D" uid="uid://dq7juy6ucfxsp" path="res://Assets/UI Elements/pixil-frame.png" id="3_piu38"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h03xr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0apgj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bhlga"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r2oco"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1cb8w"]
+
+[node name="Intro Scene" type="Node2D"]
+script = ExtResource("1_swis1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = ExtResource("2_piu38")
+
+[node name="NightButton" type="Button" parent="."]
+offset_left = 519.0
+offset_top = 291.0
+offset_right = 555.0
+offset_bottom = 313.0
+scale = Vector2(3.01, 3.01)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h03xr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0apgj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bhlga")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_r2oco")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1cb8w")
+icon = ExtResource("3_piu38")
+
+[connection signal="pressed" from="NightButton" to="." method="_on_night_button_pressed"]

@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
 @onready var health_component = $HealthComponent
+@export var id = 0
 
 func _ready():
 	$HurtboxComponent.hit.connect(on_hit)

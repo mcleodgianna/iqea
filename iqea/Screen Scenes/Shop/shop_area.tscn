@@ -1,17 +1,37 @@
-[gd_scene load_steps=35 format=3 uid="uid://d08xbqmqnq6x7"]
+[gd_scene load_steps=47 format=3 uid="uid://d08xbqmqnq6x7"]
 
-[ext_resource type="Shader" uid="uid://opb3u3ao2ajx" path="res://Screen Scenes/Main Game/background_scroll.gdshader" id="1_eihi5"]
 [ext_resource type="Script" uid="uid://c8gjy6dwu4wjp" path="res://Screen Scenes/Shop/shop_area.gd" id="1_k0gjp"]
-[ext_resource type="Texture2D" uid="uid://cngl65flsttq" path="res://Assets/Backgrounds/Iqea_background_opacity_down.png" id="2_rmgrm"]
+[ext_resource type="Texture2D" uid="uid://bp6ns5yl8epdl" path="res://Assets/Backgrounds/test_background_extra_large.png" id="2_btpb1"]
+[ext_resource type="Shader" uid="uid://cxkew05d2c5ml" path="res://Screen Scenes/Main Game/background2.gdshader" id="2_nyxay"]
+[ext_resource type="Texture2D" uid="uid://b713j7o1iqbdp" path="res://Assets/Backgrounds/backgroundballs2.png" id="3_v5g83"]
 [ext_resource type="Texture2D" uid="uid://dq7juy6ucfxsp" path="res://Assets/UI Elements/pixil-frame.png" id="4_gfbq2"]
+[ext_resource type="Material" uid="uid://c863bgbnehy6q" path="res://Screen Scenes/Shop/shop_shader_one.tres" id="4_nyxay"]
 [ext_resource type="PackedScene" uid="uid://0wxb4auv6gta" path="res://UI Elements/upgrade_panel.tscn" id="5_gfbq2"]
 [ext_resource type="Texture2D" uid="uid://ytfukrd3jor7" path="res://Assets/UI Elements/pixil-frame-0.png" id="6_2by24"]
 [ext_resource type="Texture2D" uid="uid://c50m30e4grdnh" path="res://Assets/UI Elements/fist icon.png" id="7_vusik"]
 [ext_resource type="Texture2D" uid="uid://dvqi6nek83g5x" path="res://Assets/UI Elements/balance-animated.png" id="8_btpb1"]
 [ext_resource type="Texture2D" uid="uid://dyx5qjv81jqpt" path="res://Assets/UI Elements/balance.png" id="9_v5g83"]
+[ext_resource type="Texture2D" uid="uid://eau1h7our5pg" path="res://Assets/UI Elements/storeclerk.png" id="9_y36yr"]
+[ext_resource type="Texture2D" uid="uid://tliv2eksnb33" path="res://Assets/UI Elements/speech_bubble.png" id="10_h7pyr"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k0gjp"]
-shader = ExtResource("1_eihi5")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v5g83"]
+shader = ExtResource("2_nyxay")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h7pyr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3bypv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vyq3p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6han8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8mh7i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7jnu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0753o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6bgld"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2by24"]
 
@@ -170,13 +190,77 @@ animations = [{
 
 [node name="shop_area" type="Node2D"]
 script = ExtResource("1_k0gjp")
+dialouge = Array[String](["When are you clocking out?", "You wanna get food after this?", "Why do you get all the money that the guy pays for the furniture for?", "Why am I still here?", "I haven't showered in a week.", "Watch out for November 12th 2025.", "Good afternoon young man.", "Get more health, trust me.", "I wonder why you're playing this...", "Samer did the programming!!!", "I feel like I should grab some boba tea... nah.", "Have you played Deltarune? Try it, it's pretty good.", "Hi, I'm Jerry Dickens 3rd Esq.!", "You can delete furniture after you place it, you know that right?", "I think... I'm developing a crush on you.", "Hi I'm Kim Kardashian!", "What does skibidi mean", "Why does my kid laugh when I say my age, I'm 67.", "I missed you.", "What do you do at night?", "I think... I miss my wife.", "Make Titanfall 3", "Make Titanfall 3", "Make Titanfall 3", "Crocodile Dundee more like Crocodile's Undies! Got them!", "A penguin can be a chef too.", "You can take ducks straight from public parks!", "The mitocondria is the powerhouse of the cell.", "So this duck walked up to a lemonade stand... dum dum dum.", "hai :3", "Go badgers!", "We love respawn! (let us win)", "Average person spider eats 3 person a year factoid spider eat spider outlier i live in a cave"])
 
 [node name="Background" type="TextureRect" parent="."]
 texture_repeat = 2
-material = SubResource("ShaderMaterial_k0gjp")
+material = SubResource("ShaderMaterial_v5g83")
+offset_left = -1.0
+offset_right = 639.0
+offset_bottom = 360.0
+texture = ExtResource("2_btpb1")
+
+[node name="Background2" type="TextureRect" parent="."]
+texture_repeat = 2
+material = ExtResource("4_nyxay")
 offset_right = 640.0
 offset_bottom = 360.0
-texture = ExtResource("2_rmgrm")
+texture = ExtResource("3_v5g83")
+
+[node name="UpgradePanel" parent="." instance=ExtResource("5_gfbq2")]
+layer = 0
+offset = Vector2(30, 30)
+transform = Transform2D(1, 0, 0, 1, 30, 30)
+description = "Gives you more health!"
+upgrade_title = "Love and Kindness"
+cost_per_level = 4000
+max_purchases = 999
+upgrade_id = "max_health"
+icon = ExtResource("6_2by24")
+
+[node name="UpgradePanel2" parent="." instance=ExtResource("5_gfbq2")]
+layer = 0
+offset = Vector2(230, 30)
+transform = Transform2D(1, 0, 0, 1, 230, 30)
+description = "Increases your dealt damage!"
+upgrade_title = "Hard Hands"
+cost_per_level = 2000
+max_purchases = 999
+upgrade_id = "attack_damage"
+icon = ExtResource("7_vusik")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(568, 215)
+scale = Vector2(4.56, 4.56)
+texture = ExtResource("9_y36yr")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(462.00003, 103)
+scale = Vector2(1.085, 1.365)
+texture = ExtResource("10_h7pyr")
+
+[node name="Speech" type="Label" parent="."]
+custom_minimum_size = Vector2(120, 90)
+offset_left = 393.0
+offset_top = 46.0
+offset_right = 513.0
+offset_bottom = 136.0
+autowrap_mode = 3
+
+[node name="RefreshSpeech" type="Button" parent="."]
+offset_left = 384.0
+offset_top = 19.0
+offset_right = 394.0
+offset_bottom = 34.0
+scale = Vector2(14.29448, 8.9091215)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h7pyr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3bypv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vyq3p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6han8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8mh7i")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_p7jnu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0753o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6bgld")
 
 [node name="NightButton" type="Button" parent="."]
 offset_left = 519.0
@@ -190,28 +274,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_hjkik")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_btpb1")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_v5g83")
 icon = ExtResource("4_gfbq2")
-
-[node name="UpgradePanel" parent="." instance=ExtResource("5_gfbq2")]
-layer = 0
-offset = Vector2(30, 30)
-transform = Transform2D(1, 0, 0, 1, 30, 30)
-description = "Gives you an extra life!"
-upgrade_title = "Love and Kindness"
-cost_per_level = 2000
-max_purchases = 999
-upgrade_id = "max_health"
-icon = ExtResource("6_2by24")
-
-[node name="UpgradePanel2" parent="." instance=ExtResource("5_gfbq2")]
-layer = 0
-offset = Vector2(230, 30)
-transform = Transform2D(1, 0, 0, 1, 230, 30)
-description = "Increases your dealt damage!"
-upgrade_title = "Hard Hands"
-cost_per_level = 1000
-max_purchases = 999
-upgrade_id = "attack_damage"
-icon = ExtResource("7_vusik")
 
 [node name="BalanceLabelGroup" type="Node2D" parent="."]
 position = Vector2(300, 15)
@@ -237,6 +299,7 @@ position = Vector2(-13, -1)
 sprite_frames = SubResource("SpriteFrames_nyxay")
 autoplay = "default"
 
-[connection signal="pressed" from="NightButton" to="." method="_on_night_button_pressed"]
 [connection signal="purchase_made" from="UpgradePanel" to="." method="_on_upgrade_panel_purchase_made"]
 [connection signal="purchase_made" from="UpgradePanel2" to="." method="_on_upgrade_panel_2_purchase_made"]
+[connection signal="pressed" from="RefreshSpeech" to="." method="_on_refresh_speech_pressed"]
+[connection signal="pressed" from="NightButton" to="." method="_on_night_button_pressed"]

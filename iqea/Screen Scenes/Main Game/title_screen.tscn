@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs8f1fhha1iso"]
+
+[ext_resource type="Script" uid="uid://ccuaw5esvjnq3" path="res://title_screen.gd" id="1_x4os2"]
+[ext_resource type="Shader" uid="uid://cxkew05d2c5ml" path="res://Screen Scenes/Main Game/background2.gdshader" id="2_dl6lu"]
+[ext_resource type="Texture2D" uid="uid://bp6ns5yl8epdl" path="res://Assets/Backgrounds/test_background_extra_large.png" id="3_n685n"]
+[ext_resource type="Material" uid="uid://c863bgbnehy6q" path="res://Screen Scenes/Shop/shop_shader_one.tres" id="4_2pjrt"]
+[ext_resource type="Texture2D" uid="uid://b713j7o1iqbdp" path="res://Assets/Backgrounds/backgroundballs2.png" id="5_3f21x"]
+[ext_resource type="Texture2D" uid="uid://bxcxbgdd4phr4" path="res://Assets/UI Elements/iqealogo.png" id="6_n685n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjp8x"]
+shader = ExtResource("2_dl6lu")
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_x4os2")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_mjp8x")
+offset_left = -1.0
+offset_right = 639.0
+offset_bottom = 360.0
+texture = ExtResource("3_n685n")
+
+[node name="Background2" type="TextureRect" parent="."]
+texture_repeat = 2
+material = ExtResource("4_2pjrt")
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("5_3f21x")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 180.0
+offset_right = 360.0
+offset_bottom = 220.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(1.0000005, 1.0000044)
+scale = Vector2(1.525, 1.525)
+texture = ExtResource("6_n685n")
+
+[node name="PlayButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -8.0
+offset_right = 28.0
+offset_bottom = 21.0
+text = "Play"
+
+[node name="Quit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 32.0
+offset_right = 49.0
+offset_bottom = 61.0
+text = "Quit"
+
+[node name="Credits" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 97.0
+offset_bottom = 190.0
+theme_override_constants/outline_size = 16
+text = "Art: 
+Mak Chehime
+Ambrose Shu
+
+Development:
+Samer Hamdan
+Gianna McLeod
+
+Music:
+Ian Kisiel
+Connor Barry"
+
+[connection signal="pressed" from="Control/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Control/Quit" to="." method="_on_quit_pressed"]

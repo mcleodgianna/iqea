@@ -18,6 +18,17 @@ func take_knockback_away_from_player():
 	var direction = (player.global_position - owner_node2d.global_position).normalized()
 	velocity = -direction * 400
 	
+func get_angle_to_player():
+	var owner_node2d = owner as CharacterBody2D
+	if owner_node2d == null:
+		return
+	
+	var player = owner_node2d.get_tree().get_first_node_in_group("player") as Node2D
+	if player == null:
+		return
+		
+	return owner_node2d.get_angle_to(player.global_positionw)
+
 
 func accelerate_to_player():
 	var owner_node2d = owner as Node2D

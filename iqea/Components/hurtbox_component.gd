@@ -18,6 +18,7 @@ func on_area_entered(other_area: Area2D):
 		return
 	
 	var hitbox_component = other_area as HitboxComponent
+	print(hitbox_component.damage)
 	health_component.damage(hitbox_component.damage)
 	
 	var floating_text = floating_text_scene.instantiate() as Node2D

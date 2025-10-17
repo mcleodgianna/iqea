@@ -5,6 +5,7 @@ extends Sprite2D
 @export var health: int
 @export_multiline var desc: String
 @export var view_scale_factor: float
+@export var id: int
 
 @onready var area_2d = $Area2D
 @onready var collision_shape_2d = $Area2D/CollisionShape2D

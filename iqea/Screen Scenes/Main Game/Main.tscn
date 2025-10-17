@@ -1,13 +1,15 @@
-[gd_scene load_steps=33 format=4 uid="uid://cu5h4r42dt48r"]
+[gd_scene load_steps=35 format=4 uid="uid://cu5h4r42dt48r"]
 
 [ext_resource type="Script" uid="uid://6q82dm14fswt" path="res://Screen Scenes/Main Game/scene.gd" id="1_ac845"]
 [ext_resource type="TileSet" uid="uid://cargxwu0xcn7u" path="res://dayset.tres" id="2_62auc"]
 [ext_resource type="PackedScene" uid="uid://bo1cpe7ekrm1q" path="res://Grid/Grid.tscn" id="2_o7qu1"]
 [ext_resource type="PackedScene" uid="uid://5pq4aer385v7" path="res://Screen Scenes/Main Game/catalog.tscn" id="4_o7qu1"]
 [ext_resource type="PackedScene" uid="uid://c5y26y845kq8q" path="res://Objects/Sample Object/object.tscn" id="5_5uvgq"]
-[ext_resource type="PackedScene" uid="uid://c8g7v4cupufp4" path="res://Objects/TV object/TVObject.tscn" id="6_5uvgq"]
 [ext_resource type="Texture2D" uid="uid://dvqi6nek83g5x" path="res://Assets/UI Elements/balance-animated.png" id="7_vcuvk"]
 [ext_resource type="Texture2D" uid="uid://dyx5qjv81jqpt" path="res://Assets/UI Elements/balance.png" id="8_62auc"]
+[ext_resource type="PackedScene" uid="uid://b4nt8fhhecmsh" path="res://Objects/TV object/tvObjectNew.tscn" id="8_vcuvk"]
+[ext_resource type="PackedScene" uid="uid://jdm6pl4jxscf" path="res://Objects/Sample Object/tableObject.tscn" id="9_62auc"]
+[ext_resource type="PackedScene" uid="uid://320la6f1x6i2" path="res://Objects/Sample Object/chair_object.tscn" id="10_o43j0"]
 [ext_resource type="Texture2D" uid="uid://bo7q5y7fwvt77" path="res://Assets/UI Elements/showcase.png" id="11_jos7s"]
 [ext_resource type="PackedScene" uid="uid://b2s6o1y41hdsr" path="res://UI Elements/Showcaser.tscn" id="12_o43j0"]
 
@@ -204,6 +206,23 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jos7s")
 
 [node name="Furniture" type="Node2D" parent="."]
 
+[node name="Foreground Layer" type="Node2D" parent="." groups=["foreground_layer"]]
+
+[node name="ShowcaseAnimationPlayer" parent="." instance=ExtResource("12_o43j0")]
+
+[node name="catalog" parent="." instance=ExtResource("4_o7qu1")]
+position = Vector2(49, 177)
+items = Array[PackedScene]([ExtResource("5_5uvgq"), ExtResource("8_vcuvk"), ExtResource("9_62auc"), ExtResource("10_o43j0")])
+
+[node name="Day Counter" type="Label" parent="."]
+offset_left = 205.0
+offset_top = 328.0
+offset_right = 245.0
+offset_bottom = 342.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+text = "Day: "
+
 [node name="BalanceLabelGroup" type="Node2D" parent="."]
 position = Vector2(300, 15)
 
@@ -229,23 +248,6 @@ text = "Balance: 0"
 position = Vector2(-13, -1)
 sprite_frames = SubResource("SpriteFrames_xofx3")
 autoplay = "default"
-
-[node name="Foreground Layer" type="Node2D" parent="." groups=["foreground_layer"]]
-
-[node name="ShowcaseAnimationPlayer" parent="." instance=ExtResource("12_o43j0")]
-
-[node name="catalog" parent="." instance=ExtResource("4_o7qu1")]
-position = Vector2(49, 177)
-items = Array[PackedScene]([ExtResource("5_5uvgq"), ExtResource("6_5uvgq")])
-
-[node name="Day Counter" type="Label" parent="."]
-offset_left = 571.0
-offset_top = 4.0
-offset_right = 611.0
-offset_bottom = 18.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-text = "Day: "
 
 [connection signal="mouse_entered" from="Grid" to="." method="_on_grid_mouse_entered"]
 [connection signal="mouse_exited" from="Grid" to="." method="_on_grid_mouse_exited"]

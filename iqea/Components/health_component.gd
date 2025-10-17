@@ -11,6 +11,8 @@ var current_health
 func _ready():
 	current_health = max_health
 
+func full_heal():
+	current_health = max_health
 
 func damage(damage_amount: float):
 	current_health = max(current_health - damage_amount,0)
